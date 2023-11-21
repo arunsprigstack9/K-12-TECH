@@ -1,0 +1,11 @@
+{
+  "name":"Dell",
+  "purchasedate": "11-10-2022",
+   "renewaldate": "11-10-2024",
+  "cost": "700",
+  "buildingname": "BLOCK-D",
+  "quantity": "100",
+  "grade": "second",
+  "subject": "math",
+  "length": "10"
+}
