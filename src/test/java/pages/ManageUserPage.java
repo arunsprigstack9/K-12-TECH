@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ManageUserPage extends BasePage {
-    private final By deviceUser=By.xpath("//aside[@class='sidebar-wrapper']//li[3]//a[1]");
+    private final By deviceUser=By.cssSelector("aside[class='side-menu-scroll-style sidebar-wrapper'] li:nth-child(3) a:nth-child(1)");
     private final By manageUsers=By.xpath("//div[contains(text(),'Manage Users')]");
     private final By addUser=By.xpath("//label[normalize-space()='Add User']");
     private final By firstName=By.cssSelector("input[name='firstname']");

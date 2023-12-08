@@ -1,9 +1,9 @@
 {
-  "name":"Adobepdf",
+  "name":"skype",
   "purchasedate": "11-10-2021",
-   "renewaldate": "11-10-2023",
+  "renewaldate": "11-10-2023",
   "cost": "900",
-  "buildingname": "BLOCK-A",
+  "buildingname": "BLOCK-C",
   "quantity": "100",
   "grade": "second",
   "subject": "math",

@@ -1,7 +1,8 @@
 {
-  "fname": "NIRALI",
-  "lname": "shah",
-  "userid": 125,
+  "fname": "Glen",
+  "lname": "Maxwell",
+  "middlename": "smith",
+  "userid": "US101",
   "grade": "FIRST",
   "parentemail": "ashok@gmail.com",
   "parentname": "Ashok Shah",

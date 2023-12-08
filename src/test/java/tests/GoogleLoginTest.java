@@ -12,15 +12,16 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 import java.util.Set;
 
-public class LoginTest {
+public class GoogleLoginTest {
     @Test
     public void chceckSuccessFulLogin() throws InterruptedException {
         String url="https://rocket-dev.k12techrepairs.com/";
+        String emailid="arun.sprigstack@gmail.com";
         WebDriverManager.chromedriver().setup();
         WebDriver driver =new ChromeDriver();
         WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.manage().window().maximize();
-        driver.get("https://rocket-dev.k12techrepairs.com/");
+        driver.get(url);
         String mainWindowHandle = driver.getWindowHandle();
         WebElement siginClick=driver.findElement(By.cssSelector(".MicrosoftGoogleBtn"));
         siginClick.click();
@@ -37,7 +38,7 @@ public class LoginTest {
         }
 
         WebElement emailInput= driver.findElement(By.cssSelector("#identifierId"));
-        emailInput.sendKeys("arun.sprigstack@gmail.com");
+        emailInput.sendKeys(emailid);
 //        emailInput.sendKeys(Keys.RETURN);
         driver.findElement(By.xpath("//span[text()='Next']")).click();
         //waiting for load of pasword field

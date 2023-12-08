@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
 public class ManageSoftwarePage extends BasePage {
-    private final By deviceUser=By.xpath("//aside[@class='sidebar-wrapper']//li[3]//a[1]");
+    private final By deviceUser=By.cssSelector("aside[class='side-menu-scroll-style sidebar-wrapper'] li:nth-child(3) a:nth-child(1)");
     private final By manageSoftware=By.xpath("//div[contains(text(),'Manage Software')]");
     private final By addSoftware=By.xpath("//label[normalize-space()='Add Software']");
     private final By softwareName=By.cssSelector("input[name='SoftwareName']");

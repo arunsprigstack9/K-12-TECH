@@ -64,15 +64,16 @@ public class ManageUserTest extends BaseTest {
 
     @Test
     public void editUser() throws InterruptedException, IOException {
+        String utilizerid="35171";
         ManageUserPage manageUserPage = new ManageUserPage(driver);
         manageUserPage.clickOnDeviceUser().clickOnManageUsers();
         //waiting for users to load
         Thread.sleep(3000);
         //click on user to edit
-        driver.findElement(By.cssSelector("img[utilizerid$='35094']:nth-child(1)")).click();
+        driver.findElement(By.cssSelector("img[utilizerid$='"+utilizerid+"']:nth-child(1)")).click();
         Thread.sleep(3000);
         //filing user details
-        UserDetails userDetails = JacksonUtils.deserializeJson("userdetails.json", UserDetails.class);
+        UserDetails userDetails = JacksonUtils.deserializeJson("userdetails1.json", UserDetails.class);
         manageUserPage.enterFirstName(userDetails.getFname()).
                 enterMiddleName(userDetails.getMiddlename()).
                 enterLastName(userDetails.getLname()).
@@ -88,36 +89,131 @@ public class ManageUserTest extends BaseTest {
 
     @Test
     public void showUserDetails() throws InterruptedException {
+        String utilizerid="35168";
         ManageUserPage manageUserPage = new ManageUserPage(driver);
         manageUserPage.clickOnDeviceUser().clickOnManageUsers();
         //waiting for users to load
         Thread.sleep(3000);
         //click on user to edit
-        driver.findElement(By.cssSelector("img[utilizerid$='35094']:nth-child(3)")).click();
+        driver.findElement(By.cssSelector("img[utilizerid$='"+utilizerid+"']:nth-child(3)")).click();
         Thread.sleep(3000);
     }
 
     @Test
     public void deleteUser() throws InterruptedException {
+        String utilizerid="35168";
+
         ManageUserPage manageUserPage = new ManageUserPage(driver);
         manageUserPage.clickOnDeviceUser().clickOnManageUsers();
         //waiting for users to load
         Thread.sleep(3000);
         //click on user to edit
-        driver.findElement(By.cssSelector("img[utilizerid$='35094']:nth-child(2)")).click();
+        driver.findElement(By.cssSelector("img[utilizerid$='"+utilizerid+"']:nth-child(2)")).click();
         Thread.sleep(3000);
         driver.findElement(By.cssSelector(".deleteBtn")).click();
         Thread.sleep(3000);
     }
-
     @Test
-    public void editUserAttachDevice() throws InterruptedException, IOException {
+    public void attachDeviceToUser() throws InterruptedException {
+        String utilizerid="35169";
+        String deviceSerialno="D2";
         ManageUserPage manageUserPage = new ManageUserPage(driver);
         manageUserPage.clickOnDeviceUser().clickOnManageUsers();
         //waiting for users to load
         Thread.sleep(3000);
         //click on user to edit
-        driver.findElement(By.cssSelector("img[utilizerid$='35091']:nth-child(1)")).click();
+        driver.findElement(By.cssSelector("img[utilizerid$='"+utilizerid+"']:nth-child(1)")).click();
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("//label[normalize-space()='Attach a new Device']")).click();
+        //waiting for attach new device popup
+        Thread.sleep(3000);
+        driver.findElement(By.cssSelector("input[placeholder='Search Device']")).sendKeys(deviceSerialno, Keys.ENTER);
+        //waiting for devices to appear
+        Thread.sleep(4000);
+        driver.findElement(By.cssSelector("div[serialnumber$='"+deviceSerialno+"']")).click();
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("//button[normalize-space()='Attach Device']")).click();
+        Thread.sleep(3000);
+
+    }
+
+
+   @Test
+    public void deleteUserAttachedDevice() throws InterruptedException {
+        String utilizeid="35170";
+       ManageUserPage manageUserPage = new ManageUserPage(driver);
+       manageUserPage.clickOnDeviceUser().clickOnManageUsers();
+       Thread.sleep(3000);
+       //click on user to edit
+       driver.findElement(By.cssSelector("img[utilizerid$='"+utilizeid+"']:nth-child(1)")).click();
+       Thread.sleep(3000);
+       //delete attached device
+       driver.findElement(By.cssSelector("img[title='Delete Device']")).click();
+       Thread.sleep(3000);
+       //confirm deletion
+       driver.findElement(By.cssSelector(".deleteBtn")).click();
+   }
+
+   @Test
+    public void sortBy() throws InterruptedException {
+       ManageUserPage manageUserPage = new ManageUserPage(driver);
+       manageUserPage.clickOnDeviceUser().clickOnManageUsers();
+       Thread.sleep(3000);
+       //click on name
+       driver.findElement(By.cssSelector("th[title$='Sort by']:nth-child(1)")).click();
+       Thread.sleep(3000);
+       //click on grade
+//       driver.findElement(By.cssSelector("th[title$='Sort by']:nth-child(2)")).click();
+//       Thread.sleep(3000);
+       //click on device serial
+//       driver.findElement(By.cssSelector("th[title$='Sort by']:nth-child(4)")).click();
+//       Thread.sleep(3000);
+   }
+   @Test
+    public void search() throws InterruptedException {
+        String username="Oshaka";
+       ManageUserPage manageUserPage = new ManageUserPage(driver);
+       manageUserPage.clickOnDeviceUser().clickOnManageUsers();
+       Thread.sleep(3000);
+       driver.findElement(By.cssSelector("input[placeholder='Search']")).sendKeys(username,Keys.ENTER);
+
+
+   }
+   @Test
+    public void paginaTion() throws InterruptedException {
+       ManageUserPage manageUserPage = new ManageUserPage(driver);
+       manageUserPage.clickOnDeviceUser().clickOnManageUsers();
+       Thread.sleep(3000);
+       driver.findElement(By.cssSelector("a[aria-label='Go to next page']")).click();
+       Thread.sleep(3000);
+
+   }
+    @Test
+    public void exportUsers() throws InterruptedException {
+        ManageUserPage manageUserPage = new ManageUserPage(driver);
+        manageUserPage.clickOnDeviceUser().clickOnManageUsers();
+        Thread.sleep(3000);
+        driver.findElement(By.cssSelector("div[class='row my-2 pe-0 align-items-center'] div:nth-child(2)")).click();
+
+    }
+   @Test
+    public void exportUsersHistory() throws InterruptedException {
+       ManageUserPage manageUserPage = new ManageUserPage(driver);
+       manageUserPage.clickOnDeviceUser().clickOnManageUsers();
+       Thread.sleep(3000);
+       driver.findElement(By.xpath("//div[normalize-space()='Export User History']")).click();
+
+   }
+    @Test
+    public void editUserAttachDevice() throws InterruptedException, IOException {
+        String utilizerid="35170";
+        String deviceSerialno="555334";
+        ManageUserPage manageUserPage = new ManageUserPage(driver);
+        manageUserPage.clickOnDeviceUser().clickOnManageUsers();
+        //waiting for users to load
+        Thread.sleep(3000);
+        //click on user to edit
+        driver.findElement(By.cssSelector("img[utilizerid$='"+utilizerid+"']:nth-child(1)")).click();
         Thread.sleep(3000);
         //filing user details
         UserDetails userDetails = JacksonUtils.deserializeJson("userdetails.json", UserDetails.class);
@@ -133,29 +229,14 @@ public class ManageUserTest extends BaseTest {
         driver.findElement(By.xpath("//label[normalize-space()='Attach a new Device']")).click();
         //waiting for attach new device popup
         Thread.sleep(3000);
-        driver.findElement(By.cssSelector("input[placeholder='Search Device']")).sendKeys("DRMNDS3", Keys.ENTER);
+        driver.findElement(By.cssSelector("input[placeholder='Search Device']")).sendKeys("TEST", Keys.ENTER);
         //waiting for devices to appear
         Thread.sleep(4000);
-        driver.findElement(By.cssSelector("div[serialnumber$='DRMNDS3']")).click();
+        driver.findElement(By.cssSelector("div[serialnumber$='"+deviceSerialno+"']")).click();
         Thread.sleep(3000);
         driver.findElement(By.xpath("//button[normalize-space()='Attach Device']")).click();
         Thread.sleep(3000);
 
     }
-
-   @Test
-    public void deleteUserAttachedDevice() throws InterruptedException {
-       ManageUserPage manageUserPage = new ManageUserPage(driver);
-       manageUserPage.clickOnDeviceUser().clickOnManageUsers();
-       Thread.sleep(3000);
-       //click on user to edit
-       driver.findElement(By.cssSelector("img[utilizerid$='35092']:nth-child(1)")).click();
-       Thread.sleep(3000);
-       //delete attached device
-       driver.findElement(By.cssSelector("img[title='Delete Device']")).click();
-       Thread.sleep(3000);
-       //confirm deletion
-       driver.findElement(By.cssSelector(".deleteBtn")).click();
-   }
 
 }

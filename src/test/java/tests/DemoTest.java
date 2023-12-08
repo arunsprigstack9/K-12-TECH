@@ -9,23 +9,27 @@ import pages.ManageUserPage;
 
 public class DemoTest extends BaseTest {
     @Test
-    public void manageDevice(){
+    public void manageDevice() throws InterruptedException {
         ManageDevicePage manageDevicePage= new ManageDevicePage(driver);
         manageDevicePage.clickOnDeviceUser().clickOnManageDevices();
+        Thread.sleep(3000);
+
     }
     @Test
-    public void manageUser(){
+    public void manageUser() throws InterruptedException {
         ManageUserPage manageUserPage=new ManageUserPage(driver);
         manageUserPage.clickOnDeviceUser().clickOnManageUsers();
+        Thread.sleep(3000);
     }
     @Test
     public void manageTicket() throws InterruptedException {
 //        Thread.sleep(3000);
         driver.findElement(By.xpath("//div[normalize-space()='Repairs']")).click();
         driver.findElement(By.xpath("//div[normalize-space()='Manage Tickets']")).click();
+        Thread.sleep(3000);
     }
     @Test
-    public void checkingTabs() throws InterruptedException {
+    public void checkingTabsManageDevice() throws InterruptedException {
         ManageDevicePage manageDevicePage= new ManageDevicePage(driver);
         manageDevicePage.clickOnDeviceUser().clickOnManageDevices();
         Thread.sleep(3000);

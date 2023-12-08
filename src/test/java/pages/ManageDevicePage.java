@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 public class ManageDevicePage extends BasePage {
-    private final By deviceUser=By.xpath("//aside[@class='sidebar-wrapper']//li[3]//a[1]");
+    private final By deviceUser=By.cssSelector("aside[class='side-menu-scroll-style sidebar-wrapper'] li:nth-child(3) a:nth-child(1)");
     private final By manageDevices=By.xpath("//div[contains(text(),'Manage Devices')]");
     private final By addDevice=By.xpath("//label[normalize-space()='Add Device']");
     private final By serialNumberfld=By.cssSelector("input[name='serialnumber']");
