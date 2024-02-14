@@ -44,13 +44,13 @@ public class ManagePartsTest extends BaseTest {
     }
     @Test
     public void addMasterInventoryPartToSchoolInventory() throws InterruptedException {
-        String partid="3";
+        String partid="1455";
         ManageTicketPage manageTicket=new ManageTicketPage(driver);
         manageTicket.clickOnRepairs();
         driver.findElement(By.xpath("//div[contains(text(),'Manage Parts')]")).click();
         Thread.sleep(3000);
         driver.findElement(By.xpath("//a[normalize-space()='Master Inventory']")).click();
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         driver.findElement(By.xpath("//img[@partid='"+partid+"' and @title='Add to School Inventory']")).click();
         WebElement quantityfld=driver.findElement(By.cssSelector("input[name$='Quantity']"));
         quantityfld.clear();
@@ -61,7 +61,7 @@ public class ManagePartsTest extends BaseTest {
     }
     @Test
     public void editPart() throws InterruptedException, IOException {
-        String partid="1735";
+        String partid="1788";
         ManageTicketPage manageTicket=new ManageTicketPage(driver);
         manageTicket.clickOnRepairs();
         driver.findElement(By.xpath("//div[contains(text(),'Manage Parts')]")).click();
@@ -93,28 +93,30 @@ public class ManagePartsTest extends BaseTest {
     }
     @Test
     public void deletePart() throws InterruptedException {
-        String partid="1735";
+        String partid="1788";
         ManageTicketPage manageTicket=new ManageTicketPage(driver);
         manageTicket.clickOnRepairs();
         driver.findElement(By.xpath("//div[contains(text(),'Manage Parts')]")).click();
         Thread.sleep(3000);
         //click on delete part edit
         driver.findElement(By.cssSelector("img[partid$='"+partid+"']:nth-child(2)")).click();
+        Thread.sleep(3000);
         driver.findElement(By.cssSelector(".deleteBtn")).click();
     }
     @Test
     public void search() throws InterruptedException {
-        String partid="1735";
-        String searchpart="Lenovo monitor";
+        String searchpart="Lenovo";
         ManageTicketPage manageTicket=new ManageTicketPage(driver);
         manageTicket.clickOnRepairs();
         driver.findElement(By.xpath("//div[contains(text(),'Manage Parts')]")).click();
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("//a[normalize-space()='Master Inventory']")).click();
         Thread.sleep(3000);
         driver.findElement(By.cssSelector("input[placeholder='Search']")).sendKeys(searchpart);
     }
     @Test
     public void reorder() throws InterruptedException {
-        String partid="1758";
+        String partid="1776";
         String reorderqnt="7";
         ManageTicketPage manageTicket=new ManageTicketPage(driver);
         manageTicket.clickOnRepairs();
@@ -122,7 +124,7 @@ public class ManagePartsTest extends BaseTest {
         Thread.sleep(3000);
         driver.findElement(By.cssSelector("img[partid$='"+partid+"']:nth-child(1)")).click();
         Thread.sleep(3000);
-        WebElement elm=driver.findElement(By.cssSelector("input[placeholder='0'][value='1']"));
+        WebElement elm=driver.findElement(By.xpath("(//input[@placeholder='0'])[2]"));
         elm.clear();
         elm.sendKeys(reorderqnt);
 

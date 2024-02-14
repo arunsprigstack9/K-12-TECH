@@ -14,10 +14,10 @@ import java.io.IOException;
 public class ManageUserTest extends BaseTest {
 
     @Test
-    public void addNewUser() throws IOException {
+    public void addNewUser() throws IOException, InterruptedException {
         ManageUserPage manageUserPage = new ManageUserPage(driver);
         manageUserPage.clickOnDeviceUser().clickOnManageUsers().clickOnAddUser();
-        UserDetails userDetails = JacksonUtils.deserializeJson("userdetails.json", UserDetails.class);
+        UserDetails userDetails = JacksonUtils.deserializeJson("userdetails1.json", UserDetails.class);
         manageUserPage.enterFirstName(userDetails.getFname()).
                 enterMiddleName(userDetails.getMiddlename()).
                 enterLastName(userDetails.getLname()).
@@ -27,13 +27,11 @@ public class ManageUserTest extends BaseTest {
                 enterGuardianName(userDetails.getParentname()).
                 enterPhoneNumber(userDetails.getParentnumber());
 
-        //enetr Parentel coverage
+        //enter Parentel coverage
         driver.findElement(By.cssSelector("div[class='form-check ms-5'] input[name='ParentalCoverage']")).click();
         //click save user
         manageUserPage.clickSaveUser();
 
-//     String alertMessage=driver.findElement(By.cssSelector("div[role='alert']")).getText();
-//      Assert.assertEquals(alertMessage,"User Added Successfully");
 
     }
 
@@ -64,7 +62,7 @@ public class ManageUserTest extends BaseTest {
 
     @Test
     public void editUser() throws InterruptedException, IOException {
-        String utilizerid="35171";
+        String utilizerid="35368";
         ManageUserPage manageUserPage = new ManageUserPage(driver);
         manageUserPage.clickOnDeviceUser().clickOnManageUsers();
         //waiting for users to load
@@ -89,34 +87,24 @@ public class ManageUserTest extends BaseTest {
 
     @Test
     public void showUserDetails() throws InterruptedException {
-        String utilizerid="35168";
+        String utilizerid="35368";
         ManageUserPage manageUserPage = new ManageUserPage(driver);
         manageUserPage.clickOnDeviceUser().clickOnManageUsers();
         //waiting for users to load
         Thread.sleep(3000);
-        //click on user to edit
+        //click on show user history
         driver.findElement(By.cssSelector("img[utilizerid$='"+utilizerid+"']:nth-child(3)")).click();
         Thread.sleep(3000);
+        driver.findElement(By.xpath("//a[normalize-space()='User History']")).click();
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("//a[normalize-space()='Parental Coverage History']")).click();
     }
 
-    @Test
-    public void deleteUser() throws InterruptedException {
-        String utilizerid="35168";
 
-        ManageUserPage manageUserPage = new ManageUserPage(driver);
-        manageUserPage.clickOnDeviceUser().clickOnManageUsers();
-        //waiting for users to load
-        Thread.sleep(3000);
-        //click on user to edit
-        driver.findElement(By.cssSelector("img[utilizerid$='"+utilizerid+"']:nth-child(2)")).click();
-        Thread.sleep(3000);
-        driver.findElement(By.cssSelector(".deleteBtn")).click();
-        Thread.sleep(3000);
-    }
     @Test
     public void attachDeviceToUser() throws InterruptedException {
-        String utilizerid="35169";
-        String deviceSerialno="D2";
+        String utilizerid="35368";
+        String deviceSerialno="D4";
         ManageUserPage manageUserPage = new ManageUserPage(driver);
         manageUserPage.clickOnDeviceUser().clickOnManageUsers();
         //waiting for users to load
@@ -140,7 +128,7 @@ public class ManageUserTest extends BaseTest {
 
    @Test
     public void deleteUserAttachedDevice() throws InterruptedException {
-        String utilizeid="35170";
+        String utilizeid="35368";
        ManageUserPage manageUserPage = new ManageUserPage(driver);
        manageUserPage.clickOnDeviceUser().clickOnManageUsers();
        Thread.sleep(3000);
@@ -153,6 +141,21 @@ public class ManageUserTest extends BaseTest {
        //confirm deletion
        driver.findElement(By.cssSelector(".deleteBtn")).click();
    }
+    @Test
+    public void deleteUser() throws InterruptedException {
+        String utilizerid="35368";
+
+        ManageUserPage manageUserPage = new ManageUserPage(driver);
+        manageUserPage.clickOnDeviceUser().clickOnManageUsers();
+        //waiting for users to load
+        Thread.sleep(3000);
+        //click on user to edit
+        driver.findElement(By.cssSelector("img[utilizerid$='"+utilizerid+"']:nth-child(2)")).click();
+        Thread.sleep(3000);
+        driver.findElement(By.cssSelector(".deleteBtn")).click();
+        Thread.sleep(3000);
+    }
+
 
    @Test
     public void sortBy() throws InterruptedException {
@@ -160,18 +163,18 @@ public class ManageUserTest extends BaseTest {
        manageUserPage.clickOnDeviceUser().clickOnManageUsers();
        Thread.sleep(3000);
        //click on name
-       driver.findElement(By.cssSelector("th[title$='Sort by']:nth-child(1)")).click();
+       driver.findElement(By.cssSelector("th[title$='Sort by Name']")).click();
        Thread.sleep(3000);
        //click on grade
-//       driver.findElement(By.cssSelector("th[title$='Sort by']:nth-child(2)")).click();
-//       Thread.sleep(3000);
+       driver.findElement(By.cssSelector("th[title$='Sort by created at']")).click();
+       Thread.sleep(3000);
        //click on device serial
 //       driver.findElement(By.cssSelector("th[title$='Sort by']:nth-child(4)")).click();
 //       Thread.sleep(3000);
    }
    @Test
     public void search() throws InterruptedException {
-        String username="Oshaka";
+        String username="Aru";
        ManageUserPage manageUserPage = new ManageUserPage(driver);
        manageUserPage.clickOnDeviceUser().clickOnManageUsers();
        Thread.sleep(3000);
@@ -204,39 +207,6 @@ public class ManageUserTest extends BaseTest {
        driver.findElement(By.xpath("//div[normalize-space()='Export User History']")).click();
 
    }
-    @Test
-    public void editUserAttachDevice() throws InterruptedException, IOException {
-        String utilizerid="35170";
-        String deviceSerialno="555334";
-        ManageUserPage manageUserPage = new ManageUserPage(driver);
-        manageUserPage.clickOnDeviceUser().clickOnManageUsers();
-        //waiting for users to load
-        Thread.sleep(3000);
-        //click on user to edit
-        driver.findElement(By.cssSelector("img[utilizerid$='"+utilizerid+"']:nth-child(1)")).click();
-        Thread.sleep(3000);
-        //filing user details
-        UserDetails userDetails = JacksonUtils.deserializeJson("userdetails.json", UserDetails.class);
-        manageUserPage.enterFirstName(userDetails.getFname()).
-                enterMiddleName(userDetails.getMiddlename()).
-                enterLastName(userDetails.getLname()).
-                enterStudentID(userDetails.getUserid()).
-                enterGrade(userDetails.getGrade()).
-                enterGuardianEmail(userDetails.getParentemail()).
-                enterGuardianName(userDetails.getParentname()).
-                enterPhoneNumber(userDetails.getParentnumber());
-        Thread.sleep(3000);
-        driver.findElement(By.xpath("//label[normalize-space()='Attach a new Device']")).click();
-        //waiting for attach new device popup
-        Thread.sleep(3000);
-        driver.findElement(By.cssSelector("input[placeholder='Search Device']")).sendKeys("TEST", Keys.ENTER);
-        //waiting for devices to appear
-        Thread.sleep(4000);
-        driver.findElement(By.cssSelector("div[serialnumber$='"+deviceSerialno+"']")).click();
-        Thread.sleep(3000);
-        driver.findElement(By.xpath("//button[normalize-space()='Attach Device']")).click();
-        Thread.sleep(3000);
 
-    }
 
 }

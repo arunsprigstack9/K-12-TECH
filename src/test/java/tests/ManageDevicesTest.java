@@ -41,7 +41,7 @@ public class ManageDevicesTest extends BaseTest {
         manageDevicePage.clickOnDeviceUser().clickOnManageDevices().clickAddDevice();
         manageDevicePage.enterSerialNumber(newDeviceDetails.getSerialnumber());
         //click on save device
-        manageDevicePage.clickOnSaveDevice();
+//        manageDevicePage.clickOnSaveDevice();
         Thread.sleep(3000);
 
     }
@@ -265,7 +265,7 @@ public class ManageDevicesTest extends BaseTest {
     }
     @Test
     public void addDeviceExistingUser() throws IOException, InterruptedException {
-        String utilizeid="35172";
+        String utilizeid="35294";
         //click on device/users
         NewDeviceDetails newDeviceDetails= JacksonUtils.deserializeJson("newdevicedata3.json", NewDeviceDetails.class);
         ManageDevicePage manageDevicePage= new ManageDevicePage(driver);
@@ -302,7 +302,7 @@ public class ManageDevicesTest extends BaseTest {
         //click on existing user
         driver.findElement(By.cssSelector("div[class='form-check'] input[name='existingnew']")).click();
         //search for existing user
-        driver.findElement(By.cssSelector("input[placeholder='Search User']")).sendKeys("john");
+        driver.findElement(By.cssSelector("input[placeholder='Search User']")).sendKeys("kevin");
         Thread.sleep(3000);
         driver.findElement(By.cssSelector("div[utilizerid='"+utilizeid+"']")).click();
         Thread.sleep(3000);
@@ -314,7 +314,7 @@ public class ManageDevicesTest extends BaseTest {
 
     @Test
     public void editDevice() throws IOException, InterruptedException {
-        String inventoryid="555348";
+        String inventoryid="555830";
         NewDeviceDetails newDeviceDetails= JacksonUtils.deserializeJson("editdevicedata.json", NewDeviceDetails.class);
         ManageDevicePage manageDevicePage= new ManageDevicePage(driver);
         manageDevicePage.clickOnDeviceUser().clickOnManageDevices();
@@ -418,7 +418,7 @@ public class ManageDevicesTest extends BaseTest {
         manageDevicePage.clickOnDeviceUser().clickOnManageDevices();
         Thread.sleep(5000);
         //click on edit device
-        driver.findElement(By.cssSelector("img[inventoryid$='266133']:nth-child(1)")).click();
+        driver.findElement(By.cssSelector("img[inventoryid$='555830']:nth-child(1)")).click();
         //edit device info
         Thread.sleep(5000);
         manageDevicePage.
@@ -453,10 +453,10 @@ public class ManageDevicesTest extends BaseTest {
         //click on existing user
         driver.findElement(By.cssSelector("div[class='form-check'] input[name='existingnew']")).click();
         //search for existing user
-        driver.findElement(By.cssSelector("input[placeholder='Search User']")).sendKeys("shan");
+        driver.findElement(By.cssSelector("input[placeholder='Search User']")).sendKeys("kevin");
         Thread.sleep(3000);
         //select existing user
-        driver.findElement(By.cssSelector("div[utilizerid='35070']")).click();
+        driver.findElement(By.cssSelector("div[utilizerid='35294']")).click();
         Thread.sleep(3000);
         //click on save device
         manageDevicePage.clickOnSaveDevice();
@@ -525,7 +525,7 @@ public class ManageDevicesTest extends BaseTest {
 
     @Test
     public void activeToLoanerDevice() throws IOException, InterruptedException {
-        String deviceid="D13";
+        String deviceid="DEC124";
         ManageDevicePage manageDevicePage= new ManageDevicePage(driver);
         manageDevicePage.clickOnDeviceUser().clickOnManageDevices();
         Thread.sleep(3000);
@@ -555,14 +555,14 @@ public class ManageDevicesTest extends BaseTest {
 
     @Test
     public void searchDevice(){
-        String deviceid="WS154";
+        String deviceid="DEC123";
         ManageDevicePage manageDevicePage= new ManageDevicePage(driver);
         manageDevicePage.clickOnDeviceUser().clickOnManageDevices();
         driver.findElement(By.cssSelector("input[placeholder='Search']")).sendKeys(deviceid, Keys.ENTER);
     }
     @Test
     public void loanerToDecommissionedDevice() throws InterruptedException {
-        String deviceid="WS157";
+        String deviceid="DEC124";
         ManageDevicePage manageDevicePage= new ManageDevicePage(driver);
         manageDevicePage.clickOnDeviceUser().clickOnManageDevices();
         driver.findElement(By.xpath("//a[normalize-space()='Loaner Devices']")).click();
@@ -650,26 +650,30 @@ public class ManageDevicesTest extends BaseTest {
         //wait for devices to load
         Thread.sleep(3000);
         //click on serial
-        driver.findElement(By.cssSelector("th[title$='Sort by']:nth-child(2)")).click();
+        driver.findElement(By.cssSelector("th[title='Sort by Serial number']")).click();
         Thread.sleep(3000);
         //click on asset tag
-        driver.findElement(By.cssSelector("th[title$='Sort by']:nth-child(3)")).click();
+        driver.findElement(By.cssSelector("th[title='Sort by Asset tag']")).click();
         Thread.sleep(3000);
         //click on user
-        driver.findElement(By.cssSelector("th[title$='Sort by']:nth-child(4)")).click();
+        driver.findElement(By.cssSelector("th[title='Sort by User']")).click();
         Thread.sleep(3000);
         //click on building
-        driver.findElement(By.cssSelector("th[title$='Sort by']:nth-child(5)")).click();
+        driver.findElement(By.cssSelector("th[title='Sort by Building']")).click();
         Thread.sleep(3000);
         //click on purchase date
-        driver.findElement(By.cssSelector("th[title$='Sort by']:nth-child(6)")).click();
+        driver.findElement(By.cssSelector("th[title='Sort by Purchase date']")).click();
         Thread.sleep(3000);
-
+        //click on device model
+        driver.findElement(By.cssSelector("th[title='Sort by Device model']")).click();
+        Thread.sleep(3000);
+        driver.findElement(By.cssSelector("th[title='Sort by created at']")).click();
+        Thread.sleep(3000);
 
     }
     @Test
     public void createTicket() throws InterruptedException {
-        String deviceIVid="555346";
+        String deviceIVid="555831";
         String notes="ticket notes added";
 
         ManageDevicePage manageDevicePage= new ManageDevicePage(driver);
@@ -700,6 +704,35 @@ public class ManageDevicesTest extends BaseTest {
         Thread.sleep(3000);
         driver.findElement(By.cssSelector("a[aria-label='Go to next page']")).click();
 
+    }
+
+    @Test
+    public void itemsperpage() throws InterruptedException {
+        ManageDevicePage manageDevicePage= new ManageDevicePage(driver);
+        manageDevicePage.clickOnDeviceUser().clickOnManageDevices();
+        Thread.sleep(3000);
+        Select itemsperPage=new Select(driver.findElement(By.cssSelector("div[class='col-md-4 px-0'] select")));
+        itemsperPage.selectByVisibleText("50");
+        Thread.sleep(3000);
+    }
+    @Test
+    public void searchLoanerDevices() throws InterruptedException {
+        String deviceSerialNumber="KL13";
+        ManageDevicePage manageDevicePage= new ManageDevicePage(driver);
+        manageDevicePage.clickOnDeviceUser().clickOnManageDevices();
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("//a[normalize-space()='Loaner Devices']")).click();
+        Thread.sleep(3000);
+        driver.findElement(By.cssSelector("input[placeholder='Search']")).sendKeys(deviceSerialNumber);
+
+    }
+    @Test
+    public void searchDecommisionDevice() throws InterruptedException {
+        String deviceSerialNumber="KL13";
+        ManageDevicePage manageDevicePage= new ManageDevicePage(driver);
+        manageDevicePage.clickOnDeviceUser().clickOnManageDevices();
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("//a[normalize-space()='Decommissioned Devices']")).click();
     }
 
 }

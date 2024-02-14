@@ -22,17 +22,21 @@ public class ManageUserPage extends BasePage {
     public ManageUserPage(WebDriver driver) {
         super(driver);
     }
-    public ManageUserPage clickOnDeviceUser(){
+    public ManageUserPage clickOnDeviceUser() throws InterruptedException {
+        Thread.sleep(5000);
         wait.until(ExpectedConditions.elementToBeClickable(deviceUser)).click();
+
         return this;
     }
-    public ManageUserPage clickOnManageUsers(){
+    public ManageUserPage clickOnManageUsers() throws InterruptedException {
         wait.until(ExpectedConditions.elementToBeClickable(manageUsers)).click();
+        Thread.sleep(3000);
         return this;
 
     }
-    public ManageUserPage clickOnAddUser(){
+    public ManageUserPage clickOnAddUser() throws InterruptedException {
         wait.until(ExpectedConditions.elementToBeClickable(addUser)).click();
+        Thread.sleep(3000);
         return this;
 
     }

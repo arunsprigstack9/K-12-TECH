@@ -43,8 +43,9 @@ public class ManageTicketPage extends BasePage {
         Thread.sleep(3000);
         return this;
     }
-    public ManageTicketPage clickOnRepairs(){
+    public ManageTicketPage clickOnRepairs() throws InterruptedException {
         wait.until(ExpectedConditions.elementToBeClickable(repairs)).click();
+        Thread.sleep(5000);
         return this;
     }
     public ManageTicketPage clickOnManageTickets(){

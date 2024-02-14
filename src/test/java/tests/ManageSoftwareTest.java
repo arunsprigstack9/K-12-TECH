@@ -43,7 +43,7 @@ public class ManageSoftwareTest extends BaseTest {
     }
     @Test
     public void editSoftware() throws IOException, InterruptedException {
-        String softwareid="72";
+        String softwareid="107";
         ManageSoftwarePage manageSoftwarePage=new ManageSoftwarePage(driver);
         manageSoftwarePage.clickOnDeviceUser().clickOnManageSoftware();
         Thread.sleep(3000);
@@ -70,7 +70,7 @@ public class ManageSoftwareTest extends BaseTest {
     }
     @Test
     public void showSoftwareDetails() throws InterruptedException {
-        String softwareid="72";
+        String softwareid="107";
         ManageSoftwarePage manageSoftwarePage=new ManageSoftwarePage(driver);
         manageSoftwarePage.clickOnDeviceUser().clickOnManageSoftware();
         Thread.sleep(3000);
@@ -80,7 +80,7 @@ public class ManageSoftwareTest extends BaseTest {
     }
     @Test
     public void search() throws InterruptedException {
-        String softwarename="skype";
+        String softwarename="sky";
         ManageSoftwarePage manageSoftwarePage=new ManageSoftwarePage(driver);
         manageSoftwarePage.clickOnDeviceUser().clickOnManageSoftware();
         Thread.sleep(3000);

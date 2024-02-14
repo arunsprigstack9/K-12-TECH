@@ -8,10 +8,10 @@ import pages.ManageDevicePage;
 public class DeviceAllocationTest extends BaseTest {
     @Test
     public void allocateDeviceToUser() throws InterruptedException {
-        String username="taylor";
-        String userid="35172";
-        String deviceserialno="C";
-        String serialno="C17";
+        String username="shalin";
+        String userid="35365";
+        String deviceserialno="A10";
+        String serialno="A10";
         ManageDevicePage manageDevicePage= new ManageDevicePage(driver);
         manageDevicePage.clickOnDeviceUser();
         driver.findElement(By.xpath("//div[normalize-space()='Device Allocation']")).click();
@@ -60,8 +60,8 @@ public class DeviceAllocationTest extends BaseTest {
     }
     @Test
     public void deallocateDevice() throws InterruptedException {
-        String devicesn="C17";
-        String deviceserialno="C17";
+        String devicesn="A10";
+        String deviceserialno="A10";
         ManageDevicePage manageDevicePage= new ManageDevicePage(driver);
         manageDevicePage.clickOnDeviceUser();
         driver.findElement(By.xpath("//div[normalize-space()='Device Allocation']")).click();
