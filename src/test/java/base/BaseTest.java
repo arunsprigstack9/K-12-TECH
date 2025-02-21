@@ -40,13 +40,13 @@ public class BaseTest {
             }
 
             WebElement emailInput= driver.findElement(By.cssSelector("#identifierId"));
-            emailInput.sendKeys("arun.sprigstack@gmail.com");
+            emailInput.sendKeys("email");
 //        emailInput.sendKeys(Keys.RETURN);
             driver.findElement(By.xpath("//span[text()='Next']")).click();
             //waiting for load of pasword field
             Thread.sleep(7000);
 
-            driver.findElement(By.xpath("//input[@type='password']")).sendKeys("8249107977");
+            driver.findElement(By.xpath("//input[@type='password']")).sendKeys("pwd");
             driver.findElement(By.xpath("//span[text()='Next']")).click();
             Thread.sleep(7000);
             //wait for sigin process to complete
